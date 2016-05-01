@@ -1,21 +1,18 @@
-
-float t;
-int size = 30;
+Circle circle;
+Circle circle2;
 
 void setup(){
-  size(600,600); 
+  size(600,600);
+  circle = new Circle(20);
+  circle2 = new Circle(20);
 }
 void draw (){
+  fill(255,125);
+  //rotate(radians(90));
   translate(width/2,height/2);
-  ellipse(x1(t),y1(t), size, size);  
-  t+=.1;
-}
-
-
-float x1(float t){
-  return 5*t*sin(t);
-}
-
-float y1(float t){
-  return 5*t*cos(t);  
+  circle.spiral(.1);
+  circle2.spiral(-.1);
+  circle.display();
+  circle2.display();
+  
 }
