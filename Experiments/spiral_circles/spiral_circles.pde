@@ -2,8 +2,9 @@ Circle circle;
 Circle circle2;
 
 Spiral spiral;
+Spiral spiral2;
 
-int scene = 2;
+int scene = 3;
 
 void setup(){
   size(600,600);
@@ -14,6 +15,9 @@ void setup(){
   spiral = new Spiral();
   spiral.freeze();
   
+  spiral2 = new Spiral(.1, 1, 2, 3000, 0, 4500);
+  spiral2.freeze();
+  
 }
 void draw (){
   background(185);
@@ -23,6 +27,8 @@ void draw (){
    scene2(); 
   } else if (scene==2){
    scene3(); 
+  } else if (scene==3){
+   scene4(); 
   }
   
 }
@@ -31,18 +37,40 @@ void keyPressed(){
   if (keyCode == UP){
 
     spiral.updateDeltaT(-.01);
+    
+    spiral2.updateDeltaT(-.0001);
+    
   } else if (keyCode == DOWN){
 
     spiral.updateDeltaT(.01);
+    
+    spiral2.updateDeltaT(.0001);
+    
   } else if (keyCode == LEFT){
     spiral.updateNumObjects(1);
+    
+    //spiral2.updateAmp(.001);
+    spiral2.updateNumObjects(-50);
+    
   } else if (keyCode == RIGHT){
     spiral.updateNumObjects(-1);
+    spiral2.updateNumObjects(50);
+    
+    //spiral2.updateAmp(-.001);
   }
   
   
 }
-
+void scene4(){
+  translate(width/2,height/2);
+  fill(244,244,244,125);
+  spiral2.update();
+  spiral2.display();
+  
+  fill(244,0,244,125);
+  spiral.update();
+  spiral.display(); 
+}
 void scene3(){
   translate(width/2,height/2);
   spiral.update();

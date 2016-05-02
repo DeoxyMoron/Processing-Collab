@@ -10,14 +10,26 @@ class Spiral {
   
   String MODE = "build";
   
+  color c;
+  
   Spiral(){
     amp = 5;
     period = 1;
-    deltaT = 2;
-    t = 0.0;
+    deltaT = 2; //should change terminology to step TODO /-----!/
+    t = 0.0; 
     numObjects = 13;
     minObjects = 0;
-    maxObjects = 40;
+    maxObjects = 30;
+  }
+
+  Spiral(float amp_, float period_, float step_, int numObjects_, int minObjects_, int maxObjects_ ){
+    amp = amp_;
+    period = period_;
+    deltaT = step_; //should change terminology to step TODO /-----!/
+    t = 0.0; 
+    numObjects = numObjects_;
+    minObjects = minObjects_;
+    maxObjects = maxObjects_;
   }
   
   void display(){
@@ -26,6 +38,9 @@ class Spiral {
   
   
   void update(){
+    
+    
+    
     if (MODE == "build"){
       t+= deltaT;
       ellipse(x1(t),y1(t),10,10);
@@ -45,6 +60,14 @@ class Spiral {
   
   void setMode(String mode_){
     MODE = mode_;
+  }
+  
+  void setAmp(float a){
+    amp = a;
+  }
+  
+  void updateAmp(float a){
+    amp += a;
   }
   
   void setNumObjects(int n){
