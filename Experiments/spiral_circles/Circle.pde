@@ -5,6 +5,7 @@ class Circle {
   PVector position;
   float t=0.0;
   float deltaT;
+  color c;
   Spiral spiral;
   
   Circle(int size_){
@@ -12,8 +13,12 @@ class Circle {
     spiral = new Spiral();
     position = new PVector(0,0);
     deltaT = .01;
+    c = color(255,255,255);
   }
   
+  void setColor(int r, int g, int b){
+    c = color(r,g,b);
+  }
 
 
   void spiral(){
@@ -40,6 +45,7 @@ class Circle {
   }
   
   void display(){
+    fill(c);
     ellipse(position.x, position.y, size, size);  
   }
 }
