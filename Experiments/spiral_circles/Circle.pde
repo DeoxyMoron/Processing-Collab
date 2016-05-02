@@ -20,14 +20,19 @@ class Circle {
     position.set(spiral.x1(t),spiral.y1(t));
     update();
   }
+  
+  void reset(){
+    t = 0; 
+  }
 
   void update(){
     t+= deltaT;
+    println(deltaT);
   }
   
   float modTimeSinAbs(){
     //Modulates t
-    return abs(sin(deltaT));
+    return 2*abs(sin(deltaT));
   }
   
   void setSpeed(float t){
