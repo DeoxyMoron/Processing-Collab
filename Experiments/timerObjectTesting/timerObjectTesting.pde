@@ -1,7 +1,7 @@
 Shape square;
 Circle circle;
 void setup(){
-  size(500,500); 
+  size(1000,1000); 
   noStroke();
   smooth(8);
   square = new Shape();
@@ -11,6 +11,8 @@ void setup(){
 
 void draw(){
   background(185);
+  
+  //translate(width/2,height/2);
 
   square.update();
   square.display();
@@ -26,19 +28,19 @@ void draw(){
 
 void keyPressed(){
   if (keyCode == UP){
-    square.moveTo(400,100,10);
+    square.moveTo(mouseX,mouseY,10);
     
   }
   
   if (keyCode == DOWN){
-     square.moveTo(width/2,height/2,10);
+     square.moveTo(width/2,height/2,20);
   }
   
   if (keyCode == LEFT){
-     square.rotateTo(-2*PI,500);
+     square.rotateTo(-2*PI,30);
   }
   
   if (keyCode == RIGHT){
-     square.rotateTo(PI/4,60);
+     square.rotateTo(PI/4,30);
   }  
 }
