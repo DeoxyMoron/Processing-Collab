@@ -1,4 +1,5 @@
-class Shape{
+
+class AnimationShape{
   //Class with a shape that can move and rotate according to commands
   
   Timer timerPos, timerRot;
@@ -128,15 +129,5 @@ class Shape{
         //timer2.reset();
       }
     }
-  }
-}
-
-class Circle extends Shape{
-  Circle(){
-    super();
-  }
-  
-  void drawMain(){
-    ellipse(position.x,position.y,30,30);
   }
 }

@@ -86,7 +86,7 @@ class EnvelopeNote{
   }
   
   void visualize(int offset){
-      println(pct);
+      //println(pct);
       //Wave Vis
       for(int i = 1; i < width; i++) { 
         yVals[i-1] = yVals[i];

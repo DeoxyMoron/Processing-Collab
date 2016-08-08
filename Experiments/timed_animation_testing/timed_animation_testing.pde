@@ -53,6 +53,12 @@ class Circle{
   float startTime, startFrame;
   float durationFrame, durationTime;
   float endFrame;
+  
+  float theta = 0;
+  
+  float xMod, yMod;
+  
+  int CURVE_TYPE = 0;
 
  
  Circle(){
@@ -71,7 +77,23 @@ class Circle{
    
    if (pctComplete<1.0){
      //pos.add(stepVec); //Method 1
-     pos.set(startPos.x+pow(pctComplete,step_Frames*2+2)*(endPos.x-startPos.x),startPos.y+pow(pctComplete,3)*(endPos.y-startPos.y));
+     
+     if (CURVE_TYPE == 0){
+       xMod = pctComplete;
+       yMod = pctComplete;
+     } else if (CURVE_TYPE == 1){
+       xMod = pow(pctComplete,4);
+       yMod = pow(pctComplete,4);
+     } else if (CURVE_TYPE == 2){
+       xMod = pctComplete;
+       yMod = pow(pctComplete,4);
+     } else if (CURVE_TYPE == 3){
+       xMod = pow(pctComplete,4);
+       yMod = pctComplete;
+     }
+      
+     
+     pos.set(startPos.x+xMod*(endPos.x-startPos.x),startPos.y+yMod*(endPos.y-startPos.y));
      
    }
  }
@@ -121,9 +143,6 @@ class Circle{
    endPos.set(x,y); 
    startPos.set(pos.x,pos.y);
    
-   
-   
-   
    //Make Copy of EndPos Vec
    PVector _tempVec = new PVector();
    _tempVec = endPos.copy();
@@ -131,9 +150,13 @@ class Circle{
    //Generates the Vector to increment by in updates, based on the frames steps
    
    stepVec.set( _tempVec.sub(startPos).div(framesDuration)); 
-   
-   
    }
+   
+ //void moveTo(float x, float y, float frames, mode){
+   
+ void rotateTo(float theta){
+ 
+ }
    
  void moveLeft(float x, float frames){
      moveTo(pos.x-x,pos.y,frames);
@@ -143,13 +166,18 @@ class Circle{
      moveTo(pos.x+x,pos.y,frames);
  }
  
+ 
  void display(){
    noStroke();
    pushMatrix();
    scale(1,-1);//Realign coordinate system
    translate(pos.x,pos.y);
    fill(255,0,0);
-   ellipse(0,0,30,30);
+   rectMode(CENTER);
+   rect(0,0,30,30);
+   fill(0,255,0);
+   rect(0,30,30,30);
+   //ellipse(0,0,30,30);
    popMatrix();
  }
 

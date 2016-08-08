@@ -11,25 +11,38 @@ class Track {
   
   //IntList notes;
   ArrayList<EnvelopeNote> notes; //Array of all the currently active envelope notes
+  ArrayList<CC_Note> cc_notes;
   
   // Constructors
   Track() {
      c = 0;
      name = "none";
      notes = new ArrayList<EnvelopeNote>();
+     cc_notes = new ArrayList<CC_Note>();
   }
   Track(int c_) {
     c = c_;
     name = "none";
     //notes = new IntList();
     notes = new ArrayList<EnvelopeNote>();
+    cc_notes = new ArrayList<CC_Note>();
+    
   }
+  
   Track (int c_, String name_){
     c = c_;
     name = name_;
     //notes = new IntList();
     notes = new ArrayList<EnvelopeNote>();
+    cc_notes = new ArrayList<CC_Note>();
     
+    
+    cc_notes.add(new CC_Note(0));
+    cc_notes.add(new CC_Note(1));
+    cc_notes.add(new CC_Note(123));
+    cc_notes.add(new CC_Note(124));
+    cc_notes.add(new CC_Note(125));
+    cc_notes.add(new CC_Note(122));
     //notes.add(new EnvelopeNote(15)); //REMOVETHISTESTONYL
   }
   
@@ -69,8 +82,35 @@ class Track {
           //notes.remove(i); 
         }
       }
-      
   }
+  
+  
+  
+  //Receive CC signal
+  void ccOn(int ccID_, int value_){
+    
+    //Add CC to Track, if it doesn't exist
+    //for (int i = 0; i<cc_notes.size();i++){
+    //  if (cc_notes.get(i).getChannel() != channel_){
+     //   cc_notes.add(new CC_Note(channel_));
+     // }
+   
+    
+    //Set Value of CC track
+    if (ccID_<15){ //Whitelisted for under CC #15
+      cc_notes.get(ccID_).setValue(value_);
+      //println("  CC number: "+ ccID_);
+    }
+    // }
+  }
+  
+  int getCCValue(int ccID_){
+    //Return Value of the CC, given the channel 
+    return cc_notes.get(ccID_).getValue();
+  }
+  
+  
+  
   
   ArrayList getNotes(){
     return notes;  

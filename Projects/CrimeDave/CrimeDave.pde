@@ -19,7 +19,7 @@ void setup(){
   
   MIDIsetup(); 
     
-  //Create objects for each Track
+  //Create objects for each Track 
   drums = Tracks[0] = new Track (0,"drums");
   bass = Tracks[1] = new Track (1,"bass");
   vox = Tracks[2] = new Track(2,"vox");
@@ -27,31 +27,46 @@ void setup(){
   synth = Tracks[4] = new Track(4,"synth");
   bleeps = Tracks[5] = new Track(5,"bleeps");
   glitchpad = Tracks[6] = new Track(6, "glitchpad");
-
+  //frameRate(144);
 } 
-Circle bassCircle = new Circle(200,0);
+
+//Animated Objects
+Circle bassCircle = new Circle(200,0); 
 
 
 
 void draw() {
+  
+  println("-----bruh: "+ bass.getCCValue(1));
+  
   background(255);
-    //translate(width/2,height/2);
+    //translate(width/2,height/2); 
       
       strokeWeight(2);
       stroke(0);
       line(0,height/2,width,height/2);
       
-      bassCircle.update();
-      bassCircle.display();
       
+
+      
+      //Update bass Track
       bass.update();
+      println("WEEE:" + bass.getCCValue(1));
       
+      //Visualize Envelopes
       if (bass.hasPitch(5)){
         bass.getNoteByPitch(5).visualize(200);
       }
       if (bass.hasPitch(6)){
         bass.getNoteByPitch(6).visualize(-50);
       }      
+
+      
+      //Draw Circle
+      bassCircle.update();
+      bassCircle.display();
+      
+      
       
       //Unpack Notes and update them
       

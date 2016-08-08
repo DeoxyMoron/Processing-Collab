@@ -52,13 +52,14 @@ class Circle{
     
     
     ellipse(0,0,size,size);
-
+    
+    rectMode(CENTER);
     //Circle 1
     pushMatrix();
     rotate(theta);
     translate(distance,0);
     fill(255,0,0);
-    ellipse(0,0,size,size);
+    rect(0,0,size,size);
     theta += orbitspeed;
     popMatrix();
     
@@ -66,8 +67,10 @@ class Circle{
     pushMatrix();
     rotate(theta+PI);
     translate(distance,0);
+    
     fill(255,0,0);
-    ellipse(0,0,size,size);
+    
+    rect(0,0,size,size);
     theta += orbitspeed;
     popMatrix();
     

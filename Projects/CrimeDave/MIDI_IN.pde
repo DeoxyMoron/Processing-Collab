@@ -1,3 +1,5 @@
+int INPUT_DEVICE_ID = 1;
+
 /*
 Receiving MIDI messages in processing.
 1) Select MIDI device you want to receive from.
@@ -25,19 +27,19 @@ void MIDIsetup() {
     } 
 
 // Currently we assume the first device (#0) is the one we want 
-  mymididevice = RWMidi.getInputDevices()[0].createInput(this); 
+  mymididevice = RWMidi.getInputDevices()[INPUT_DEVICE_ID].createInput(this); 
 
 } 
   
 Track track;
 //Note ON recieved 
 void noteOnReceived(Note MIDInote) {
-  
+
     //Store pitch and change Track state to Note On
     int i = MIDInote.getChannel();
     //track = Tracks[i];
     
-    
+    //println(MIDInote.getChannel());
     Tracks[i].noteOn(MIDInote.getPitch()); // Send MIDI ON signal to Track object
     
     
@@ -66,7 +68,12 @@ void programChangeReceived(ProgramChange pc) {
 
 // Control Change recieved 
 void controllerChangeReceived(Controller cc) {
+  if (DEFAULT_MSG){
   println("cc channell is: " + cc.getChannel() + "  " + "cc number is: " + cc.getCC() + "  " + "cc value is:  " + cc.getValue() );
+  }
+  //println("cc channell is: " + cc.getChannel() + "  " + "cc number is: " + cc.getCC() + "  " + "cc value is:  " + cc.getValue() );
+  int i = cc.getChannel();
+  Tracks[i].ccOn(cc.getCC(),cc.getValue());
 }
 
 // System Exclusive recieved 

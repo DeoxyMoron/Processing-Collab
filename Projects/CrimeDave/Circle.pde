@@ -15,6 +15,10 @@ class Circle {
     velocity = new PVector(0,0);
   }
   
+  void setDiameter(float diameter_){
+    diameter = diameter_;
+  }
+  
   void update(){
       //println(bass.getNotes());
 
@@ -27,7 +31,7 @@ class Circle {
         c = color(0,3,255,alpha);
       } else if (bass.hasPitch(3)){
         c = color(123,123,33,alpha);
-      } else if (bass.hasPitch(4)){
+      } else if (bass.hasPitch(4)){ 
         c = color(0,3,124,alpha); 
       }
       
@@ -35,14 +39,21 @@ class Circle {
       //Check for 5 and 6 and make it go up and down
       float down = bass.getEnvelopeByPitch(5); 
       float up = bass.getEnvelopeByPitch(6);
-      float multiplier = 5;
+      float multiplier = 15;
       
-      velocity.set(0,(down-up)*multiplier);
+      //GetCC data
       
-      position.add(velocity);
+      
+      //velocity.set(0,(down-up)*multiplier);
+      
+      //position.add(velocity);
       //println(position);
       
       
+      //diameter =bass.getCCValue(1);
+
+        
+        
       //Mockup
       if (bass.hasPitch(99)){
         moveLeft();
